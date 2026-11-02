@@ -225,6 +225,95 @@ If this process owner is not even in the group as the file’s group owner, then
     *   Configuring security policies and administrative permissions via `/etc/sudoers` using `visudo`.
 
 ---
+### User and Group Management Commands in Linux (https://linuxhandbook.com/user-management-commands/)
+* Linux is a multi-user operating system by default. System users, human users, groups and a lot more.
+* As a sysadmin, you should know how to get details of users on the system, modify their access, change their passwords or set a password policy and manage their groups.
+
+* **User identification commands**
+    * `who` -> Lists all logged-in users
+        * `who -u` -> Print the idle time of users
+        * `who -q` -> Display only the usernames (and their count)
+        * `who -T` -> Check if users can be sent instant message or not, In the output below, the + means yes and – means no.
+            `sh-3.2# who -T`
+            `pinaldadhania    - console       3 Oct 20:54` 
+            `pinaldadhania    + ttys005       1 Nov 19:45`
+        * `who -m` ->  Display information about yourself similar to `whoami`
+        * `who -b` -> last boot time similar to `uptime`
+            * `who /var/log/wtmp` -> give information about past logins
+            * `who /var/log/btmp` -> all the failed login attempts
+
+    * `id` -> Get user and group id
+        * output -> `uid=1000(Chirag) gid=1000(Chirag) groups=1000(Chirag),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),119(lpadmin),130(lxd),131(sambashare)`
+        * `id username` -> Print the UID and GID of a certain user
+        * `id -u username` -> Print only the UID of a user
+        * `id -g username` -> Print only the GID of a user
+        * `id -G username` -> Print the IDs of all other groups the user belongs to
+        * `id -nG username` -> Print names instead of the numeric IDs
+
+    * `finger` -> Logged in user information
+        * `sudo apt install finger` -> To install finger
+        `sh-3.2# finger`
+        `Login            Name             TTY      Idle   Login  Time   Office  Phone`
+        `pinaldadhania    Pinal Dadhania  *console   29d   3 Oct  20:54`
+        `pinaldadhania    Pinal Dadhania   s005            Sun    19:45`
+        * `finger pinaldadhania` -> to view info about the specific user
+        * `finger -p username` -> Prevent showing plan, project, and PGP key fields
+        * `finger -l` ->  Display all the logged-in users in long form          
+
+* **User account management commands**
+    * `useradd` -> create a new user account
+        * `useradd new_username` -> Add a new user in Linux with useradd command. It will create the user account but: user’s home directory won’t be created, password has to be set separately, default shell for the user will be sh
+        * `useradd -m new_username` -> Add a user with home directory with useradd command
+        * `useradd -d Path_to_Existing_Directory new_username` -> We can also specify an existing directory as the home directory of the newly created user with option -d.
+        * `useradd -s /bin/bash new_username` -> Add a new user with a different shell
+        * `useradd -g Existing_groip_name_OR_ID new_username` ->  Add a new user with different group
+        * `useradd -G group_1 group_2 new_username` -> also add the user to additional (existing) groups with option -G.
+        * `useradd -u uid new_username` -> Add a new user with specific user ID (UID)
+        * `useradd -d /home/Chiggyhek -s /bin/bash -g my_group New_username` -> Combine multiple options to create a new user with different parameters
+
+    * `userdel` -> Delete an existing user
+        * `sudo userdel user_name` -> Deleting users in Linux command line
+        * `sudo userdel -r user_name` -> Remove user with home directory
+    
+    * `usermod` -> Modify user account
+        * `sudo usermod -l new_username old_username` -> Change the username
+        * `sudo usermode -d new_home_dir user_name` -> Change the home directory of user (Keep in mind that it will change the home directory even if the directory doesn’t exist but it will not create it on its own.)
+        * `sudo usemode -md new_home_dir username` -> A better way to change the home directory of the user is to use -m option with -d. This way, it will create the new home directory if it doesn’t exist. Apart from that, it will also move the content of the old home directory to the new home directory with correct file permissions and ownership.
+        * `sudo usermod -s /bin/zsh username`-> Change the login shell of the user
+        * `sudo usermod -g new_user_group_name user_name` -> Change the default user group
+        * `sudo usermod -L username` -> Lock the username, A locked user cannot log in to the system.
+        * `sudo usermode -U username` -> Unlock the username
+        * `sudo usermode -e 2020-04-01 username` -> [Date formate - `YYYY-MM-DD`] Set an expiry date to the user account; Suppose an intern joins your organization for two months. You’ll have to remove the user account once the intern departs. You can play smart here and set an expiry date to the intern’s account so that it automatically disables the account.
+        * `sudo usermode -u UID username` -> Change the UID of a user
+
+    * `passwd`  -> Manage user passwords
+        * `passwd` -> To change own accout password
+        * `passwd new_username` -> To set the password for user
+        * `passwd -S Pinald` -> 
+
+        `Pinald   |   P    |   06/13/2020      |     0       |    99999    |       7        |      -1`  
+        `username | status | Date Last Changed | Minimum Age | Maximum Age | Warning Period | Inactivity Period`
+        * `sudo passwd -d user_name` -> Delete password from an account and make it password-less
+        * `sudo passwd -l user_name` -> To lock the user account
+        * `sudo passwd -u user_name` -> To unlock the user account
+* **Group management**
+    * `groupadd` -> Creates new groups
+        * `sudo groupadd new_group_name` -> Create a new group
+            * here you can verify it runnning the `grep new_group_name /etc/group`
+        * `sudo gpasswd -M user1,user2,user3 new_group_name`  -> add multiple users to a group at the same time, you can use the gpasswd command like this
+        * `sudo groupadd new_group_namep -g GID` -> create a group with specific Id
+        * `sudo groupadd -r new_group_name` -> Create a new system group When we create a new group, it’s a normal group with GID higher than 1000. we can also create a system group that automatically takes a group id between SYS_GID_MIN and SYS_GID_MAX as defined in /etc/login.defs.
+    * `groupdel` -> Delete a group
+        * `sudo groupdel group_name` -> refer this https://linuxhandbook.com/groupdel-command/
+    * `groupmod` -> Modify group properties
+        * `sudo groupmod -n new_groupname old_groupname` -> Change group name with groupmod command, The good thing here is that even though you have changed the group name, it doesn’t affect any files owned by the group.
+        * `sudo groupmod -g GID groupname` -> sudo groupmod -g GID groupname
+            * Now this is a risky modification and should be avoided. First, there will be no checks performed regarding the login defs like GID_MIN, GID_MAX, SYS_GID_MIN, SYS_GID_MAX values to distinguish system groups and normal groups.
+            * Second and more important thing is that the files owned by the group will be left with group ownership by a nonexistent group.
+            * `ls -l a.txt ` ->   `-rw-r--r-- 1 Chiggyhek testing 57 Feb 24 15:57 a.txt` ->  `sudo groupmod -g 1020 testing` -> `-rw-r--r-- 1 Chiggyhek 1008 57 Feb 24 15:57 a.txt`   
+
+
+---
 
 ## Worked Examples
 
