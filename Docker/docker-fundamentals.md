@@ -1,6 +1,6 @@
 # Docker Fundamentals --- MAANG Interview Preparation Notes
 
-> **Scope:** Day 1, Block 3 --- Docker images, containers, Dockerfile
+> **Scope:** Docker images, containers, Dockerfile
 > basics, build cache, writable layers, lifecycle, port publishing, and
 > troubleshooting.
 
