@@ -15,7 +15,7 @@ Linux organizes everything as a file within a single, unified virtual file tree 
     *   `/home`: Default location for individual regular user home directories (e.g., `/home/pinal`). -- Its like the personal workspace, every user gets its own home directory
     *   `/root`: Dedicated home directory for the administrative root user. -> its for the admin account 
 *   **System Binaries & Executables**
-    *   `/bin`: Essential command-line binaries required in single-user mode (e.g., `ls`, `cp`, `bash`, `mv`, `cat`, `mkdir`, etc). -> Its a toolbox which allow the linux to operate, whithout this system would be very helpful
+    *   `/bin`: Essential command-line binaries required in single-user mode (e.g., `ls`, `cp`, `bash`, `mv`, `cat`, `mkdir`, etc). -> Its a toolbox which allow the linux to operate, without this system would be very helpless
     *   `/sbin`: Essential system administration binaries restricted primarily to the root user (e.g., `fdisk`, `iptables`). -> 
         *    s -stands for system, admin tools (`Networking : ip, ifconfig, route`, `Disk Management : fdisk, mkfs, parted`, `Booting the System : grub-install, init`, `System-Recovery : fsck, e2fsck`)
     *   `/usr/bin` & `/usr/sbin`: Non-essential user binaries, applications, and system utilities.
@@ -28,7 +28,7 @@ Linux organizes everything as a file within a single, unified virtual file tree 
 *   **Kernel & Virtual Pseudo-Filesystems**
     *   `/proc`: Dynamic, in-memory virtual filesystem exposing kernel and process states as text files. -> /proc doesn't actually exist on hard disk, Its a virtual filesystem create by the Linux Kernel, It contains the live information about running processes, cpu usage, memory, system configuration and much more, whenever monitoring needs an info about memory it usese the `cat /proc/meminfo`,
         *   think of it like the live dashboard of the whats happening right now inside linux right now 
-    *   `/boot`: It contains everything is needed to start linux, like The linux kerner, Bootloader files and the startup configuration all are lives here. without these files operating system can be boot or start.
+    *   `/boot`: It contains everything is needed to start linux, like The linux kerner, Bootloader files and the startup configuration all are lives here. without these files operating system can not be boot or start.
     *   `/sys`: Virtual filesystem representing device and kernel configuration parameters.
     *   `/lib`: shared library are lives here 
     *   `/dev`: Special directory containing device nodes representing hardware components and pseudo-devices.
@@ -50,7 +50,7 @@ What lives where
 *   `/tmp` -> temporary Files
 *   `/dev` -> Hardware devices
 *   `/mnt or /media` -> external storage
-*   `proc` -> System Information
+*   `proc` -> System Information in live (Live Dashboard for cpu memory and all other stuff)
 *   `boot` -> Boot Files
 ---
 
