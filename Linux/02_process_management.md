@@ -41,7 +41,7 @@ PID    TTY        TIME     CMD
 `ps -e` or `ps -A` -> To see all the running processes across the system
 `ps -ef` list the process but in the full format
 `ps -ef | more` to view line by line like from top to bottom use `more` command
-`ps aux` -> it gives you more info abount the BSD format (Berkeley Software Distribution)
+`ps aux` -> it gives you more info about the BSD format (Berkeley Software Distribution)
 `ps -u <username>` to see the process by username
 `ps -G <groupname>` to see the process by Group Name
 
