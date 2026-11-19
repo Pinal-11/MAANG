@@ -1,0 +1,6 @@
+2026-11-17 10:00:01 INFO Application started
+2026-11-17 10:00:02 ERROR Database connection failed
+2026-11-17 10:00:03 WARNING High CPU usage
+2026-11-17 10:00:04 ERROR Connection timeout
+2026-11-17 10:00:05 INFO Request completed
+2026-11-17 10:00:06 ERROR Pod restart detected
