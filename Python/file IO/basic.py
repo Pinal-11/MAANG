@@ -25,12 +25,30 @@
 
 # -----------write Operation ---------------
 
-with open("app2.txt", "w") as f:
-    f.write("This is from the Write statement\n")
+# with open("app2.txt", "w") as f:
+#     f.write("This is from the Write statement\n")
 
-with open("app2.txt", "a") as f:
-    f.write("This is the from the Append Statement\n")
+# with open("app2.txt", "a") as f:
+#     f.write("This is the from the Append Statement\n")
 
-with open("app2.txt", "r", encoding="utf-8") as f:
-    for lines in f:
-        print(lines.strip())
+# with open("app2.txt", "r", encoding="utf-8") as f:
+#     for lines in f:
+#         print(lines.strip())
+
+# #--------------------------------------------------
+
+from pathlib import Path
+
+config_file = Path("app.txt")
+
+print("File metadata : ", config_file.stat())
+print("File Size : ", config_file.stat().st_size)
+
+try:
+    with config_file.open("r", encoding="utf-8") as file:
+        for line in file:
+            print(line.strip())
+
+finally:
+    print("WITH Block is completed")
+

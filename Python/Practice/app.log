@@ -3,4 +3,26 @@
 2026-11-17 10:00:03 WARNING High CPU usage
 2026-11-17 10:00:04 ERROR Connection timeout
 2026-11-17 10:00:05 INFO Request completed
+2026-11-17 10:00:06 ERROR Pod restart detected ERROR
 2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:06 ERROR Pod restart detected
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 WARNING High CPU usage
+2026-11-17 10:00:03 WARNING High CPU usage
+2026-11-17 10:00:03 WARNING High CPU usage
+2026-11-17 10:00:03 WARNING High CPU usage
+2026-11-17 10:00:03 WARNING High CPU usage
+Error: Application log file not found!
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
+2026-11-17 10:00:03 ERROR High CPU usage
